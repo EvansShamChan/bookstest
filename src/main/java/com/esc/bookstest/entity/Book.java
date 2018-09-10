@@ -1,12 +1,15 @@
 package com.esc.bookstest.entity;
 
+import lombok.Data;
+
 import javax.persistence.*;
 import java.sql.Date;
 import java.util.List;
 
+@Data
 @Entity
 @Table(name = "books")
-public class Book {
+public class Book extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
