@@ -9,8 +9,4 @@ import org.springframework.test.context.junit4.SpringRunner;
 @SpringBootTest
 public class BookstestApplicationTests {
 
-	@Test
-	public void contextLoads() {
-	}
-
 }
