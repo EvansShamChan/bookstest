@@ -39,6 +39,10 @@ public class BookServiceImpl implements BookService {
 
     @Override
     public BookDto updateBook(BookDto bookDto, Long bookId) {
+        // check if book exists
+        bookRepository.findById(bookId)
+                .orElseThrow(() -> new ResourceNotFoundException(String.format("Book with id %d not found", bookId)));
+
         Book book = bookConverter.convertToEntity(bookDto);
         book.setId(bookId);
         bookRepository.save(book);
