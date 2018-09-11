@@ -1,6 +1,7 @@
 package com.esc.bookstest.entity;
 
 import lombok.Data;
+import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
 import java.sql.Date;
@@ -16,13 +17,13 @@ public class Author extends BaseEntity{
     @Column(name = "id", nullable = false, updatable = false)
     private Long id;
 
-    @Column(name = "name", nullable = false)
+    @Column(name = "name", nullable = false, columnDefinition = "nvarchar(100)")
     private String name;
 
     @Column(name = "gender", nullable = false)
     private String gender;
 
-    @Column(name = "born", nullable = false)
+    @Column(name = "born")
     private Date born;
 
     @OneToMany(mappedBy = "author_id")

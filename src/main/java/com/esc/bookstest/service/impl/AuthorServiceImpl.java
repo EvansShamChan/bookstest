@@ -9,6 +9,8 @@ import com.esc.bookstest.service.AuthorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class AuthorServiceImpl implements AuthorService {
 
@@ -48,4 +50,24 @@ public class AuthorServiceImpl implements AuthorService {
         authorRepository.save(author);
         return authorConverter.convertToDto(author);
     }
+
+    @Override
+    public List<AuthorDto> getAllAuthorsOlderThan(Integer age) {
+        List<Author> allAuthorsOlderThan = authorRepository.getAllAuthorsOlderThan(age);
+        return authorConverter.convertToDto(allAuthorsOlderThan);
+    }
+
+    @Override
+    public List<AuthorDto> getAllAuthorsByBookNumberGreaterThan(Integer bookNumber) {
+        List<Author> allAuthorsByBookNumberGreaterThan = authorRepository.getAllAuthorsByBookNumberGreaterThan(bookNumber);
+        return authorConverter.convertToDto(allAuthorsByBookNumberGreaterThan);
+    }
+
+    @Override
+    public List<AuthorDto> getAuthorsByMostBookNumber() {
+        List<Author> authorsByMostBookNumber = authorRepository.getAuthorsByMostBookNumber();
+        return authorConverter.convertToDto(authorsByMostBookNumber);
+    }
+
+
 }
