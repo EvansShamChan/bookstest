@@ -31,4 +31,9 @@ public class BookController {
     public BookDto updateBook(@RequestBody BookDto bookDto, @PathVariable Long bookId) {
         return bookService.updateBook(bookDto, bookId);
     }
+
+    @GetMapping("/genre/{genre}")
+    public Integer getNumberOfBooksByGenre(@PathVariable String genre) {
+        return bookService.getNumberOfBooksByGenre(genre);
+    }
 }

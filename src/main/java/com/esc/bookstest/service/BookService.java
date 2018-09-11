@@ -10,4 +10,6 @@ public interface BookService {
     void deleteBook(Long bookId);
 
     BookDto updateBook(BookDto bookDto, Long bookId);
+
+    Integer getNumberOfBooksByGenre(String genre);
 }

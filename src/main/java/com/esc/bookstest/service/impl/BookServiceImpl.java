@@ -48,4 +48,9 @@ public class BookServiceImpl implements BookService {
         bookRepository.save(book);
         return bookConverter.convertToDto(book);
     }
+
+    @Override
+    public Integer getNumberOfBooksByGenre(String genre) {
+        return bookRepository.getNumberOfBooksByGenre(genre);
+    }
 }
