@@ -16,10 +16,10 @@ public class Book extends BaseEntity {
     @Column(name = "id", nullable = false, updatable = false)
     private Long id;
 
-    @Column(name = "name", nullable = false)
+    @Column(name = "name", nullable = false, columnDefinition = "nvarchar(100)")
     private String name;
 
-    @Column(name = "published", nullable = false)
+    @Column(name = "published")
     private Date published;
 
     @Column(name = "genre", nullable = false)
