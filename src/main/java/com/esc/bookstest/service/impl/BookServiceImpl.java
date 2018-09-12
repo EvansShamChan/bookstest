@@ -51,6 +51,10 @@ public class BookServiceImpl implements BookService {
 
     @Override
     public Integer getNumberOfBooksByGenre(String genre) {
-        return bookRepository.getNumberOfBooksByGenre(genre);
+        Integer numberOfBooksByGenre = bookRepository.getNumberOfBooksByGenre(genre);
+        if(numberOfBooksByGenre == null) {
+            throw new ResourceNotFoundException("No such genre");
+        }
+        return numberOfBooksByGenre;
     }
 }

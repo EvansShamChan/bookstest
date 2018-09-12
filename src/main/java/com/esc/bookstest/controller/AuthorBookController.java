@@ -1,8 +1,11 @@
 package com.esc.bookstest.controller;
 
 import com.esc.bookstest.dto.AuthorBookDto;
+import com.esc.bookstest.exception.ResourceNotFoundException;
 import com.esc.bookstest.service.AuthorBookService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -13,8 +16,8 @@ public class AuthorBookController {
     private AuthorBookService authorBookService;
 
     @PostMapping
-    public AuthorBookDto createRelation(@RequestBody AuthorBookDto authorBookDto) {
-        return authorBookService.createRelation(authorBookDto);
+    public ResponseEntity<AuthorBookDto> createRelation(@RequestBody AuthorBookDto authorBookDto) {
+        return new ResponseEntity<>(authorBookService.createRelation(authorBookDto), HttpStatus.CREATED);
     }
 
     @GetMapping("/{id}")
@@ -30,5 +33,10 @@ public class AuthorBookController {
     @PutMapping("/{id}")
     public AuthorBookDto updateRelation(@PathVariable Long id, @RequestBody AuthorBookDto authorBookDto) {
         return authorBookService.updateRelation(id, authorBookDto);
+    }
+
+    @ExceptionHandler({ResourceNotFoundException.class})
+    public ResponseEntity exceprionHandler(Exception e) {
+        return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
     }
 }
